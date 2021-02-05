@@ -14,19 +14,30 @@ namespace Week2
         //รับค่า
         public Text NameN1;
         public Text UserMe;
+        public Text IPnum;
+        public Text Portnum;
         //โชว์ข้อความ
+        public Text Showstatus;
         //public Text ShowUserMetext;
         //public Text ShowUserYourtext;
         //เก็บเป็นข้อความ
         string Metalk;
         string Yourtalk;
+        string numIp;
+        string numPort;
         //ตัวtextข้อความ
         public GameObject textspawnUser;
         public GameObject textspawnYour;
         public GameObject prarent;
         public GameObject spawntextpostUser;
         public GameObject spawntextpostYour;
-
+        
+        //เซ็ทค่า
+        
+        //เก็บUI
+        
+        
+        public GameObject gin;
 
         public List<GameObject> counttext = new List<GameObject>();
         
@@ -140,14 +151,32 @@ namespace Week2
 
        
 
-       void Login() 
+       public void Login() 
        {
 
-            name1 = NameN1.text;
-            print("Name : " + name1);
+
+            //name1 = NameN1.text;
+            //print("Name : " + name1);
 
 
-       }
+           
+            if (IPnum.text == "127.0.0.1"&& Portnum.text == "24563")
+            {
+                gin.SetActive(false);
+            }
+            else
+            {
+                Showstatus.text ="login False Try Again";
+
+            }
+
+
+
+
+
+
+
+        }
 
 
 

@@ -38,23 +38,23 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11248}
+      Script: {instanceID: 11232}
     - Class: 114
-      Script: {instanceID: 11406}
+      Script: {instanceID: 11252}
     - Class: 114
-      Script: {instanceID: 11446}
+      Script: {instanceID: 11448}
     - Class: 114
-      Script: {instanceID: 11834}
+      Script: {instanceID: 11838}
     - Class: 114
-      Script: {instanceID: 12218}
+      Script: {instanceID: 12222}
     - Class: 114
-      Script: {instanceID: 12406}
+      Script: {instanceID: 12410}
     - Class: 114
-      Script: {instanceID: 12698}
+      Script: {instanceID: 12702}
     - Class: 114
-      Script: {instanceID: 13050}
+      Script: {instanceID: 12956}
     - Class: 114
-      Script: {instanceID: 13480}
+      Script: {instanceID: 13056}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -74,6 +74,12 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
+  - hash:
+      serializedVersion: 2
+      Hash: aeb62f729c52c814dec86c47dcac1471
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Text
   - hash:
       serializedVersion: 2
       Hash: 4bc4346a71a8df53a6b106f68ef3a190
@@ -122,12 +128,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ActivationTrack
-  - hash:
-      serializedVersion: 2
-      Hash: aeb62f729c52c814dec86c47dcac1471
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Text
   - hash:
       serializedVersion: 2
       Hash: 499fd23433e68e265d153aa6b95d0047
@@ -418,6 +418,12 @@ ScriptsOnlyBuild:
     className: TextMeshPro
   - hash:
       serializedVersion: 2
+      Hash: 9b878498db1211dfd66b8adaa4390e8f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Week2
+    className: wedsocketConnection
+  - hash:
+      serializedVersion: 2
       Hash: 3165968ba45c74472d279ba04455fccb
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -506,12 +512,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
-  - hash:
-      serializedVersion: 2
-      Hash: d8330d3dcbf13cbc36ac84f869c1d827
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: Week2
-    className: wedsocketConnection
   platform: 5
   scenePathNames:
   - Assets/Week2/scencs/ProgramChat.unity
