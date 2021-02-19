@@ -18,7 +18,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.InputField
     - UnityEngine.UI.Text
   sceneClasses:
-    Assets/Week2/scencs/ProgramChat.unity:
+    Assets/Week4/scencs/index.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -42,19 +42,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11252}
     - Class: 114
-      Script: {instanceID: 11448}
+      Script: {instanceID: 11450}
     - Class: 114
-      Script: {instanceID: 11838}
+      Script: {instanceID: 11840}
     - Class: 114
-      Script: {instanceID: 12222}
+      Script: {instanceID: 12224}
     - Class: 114
-      Script: {instanceID: 12410}
+      Script: {instanceID: 12412}
     - Class: 114
-      Script: {instanceID: 12702}
+      Script: {instanceID: 12706}
     - Class: 114
-      Script: {instanceID: 12956}
+      Script: {instanceID: 12960}
     - Class: 114
-      Script: {instanceID: 13056}
+      Script: {instanceID: 13062}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -62,8 +62,6 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
-      Script: {instanceID: 0}
-    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -116,6 +114,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: PlayerQuitHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: LobbyRoomExample
+    className: LobbyManager
   - hash:
       serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
@@ -418,7 +422,7 @@ ScriptsOnlyBuild:
     className: TextMeshPro
   - hash:
       serializedVersion: 2
-      Hash: 9b878498db1211dfd66b8adaa4390e8f
+      Hash: 0409e5bb630c5d143b2cf0931db91d1c
     assemblyName: Assembly-CSharp.dll
     namespaceName: Week2
     className: wedsocketConnection
@@ -446,6 +450,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Outline
+  - hash:
+      serializedVersion: 2
+      Hash: 8d05b35e897e08de60b945862a432cc7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Example
   - hash:
       serializedVersion: 2
       Hash: a63fc1a3b035e5a0b5839cd7f7b3086e
@@ -514,5 +524,5 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   platform: 5
   scenePathNames:
-  - Assets/Week2/scencs/ProgramChat.unity
+  - Assets/Week4/scencs/index.unity
   playerPath: D:/GI455/GI455_1610703181/GI455_Project/buildGameTest/GI455_Project.exe
