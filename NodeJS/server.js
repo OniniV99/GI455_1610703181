@@ -1,6 +1,7 @@
+
+const sqlite3 = require('sqlite3').verbose()
+
 var wedsocket = require('ws');
-
-
 
 var wedsocketServer = new wedsocket.Server({port:24563},()=>{
 
@@ -8,7 +9,7 @@ console.log("oni server is running")
 
 })
 
-var wsList = []
+//var wsList = []
 var roomList = []
 
 /*
@@ -17,10 +18,25 @@ var roomList = []
     wsList: []
 }
 */
+let db = new sqlite3.Database('./database/chatDB.db', sqlite3.OPEN_CREATE | sqlite3.OPEN_READWRITE, (err)=>{
+
+    
+    if(err) throw err;
+
+    console.log('Connected to database.')
+    /*
+    var sqlSelect = "SELECT * FROM UserData WHERE UserID = '"+userID+"' AND Password ='"+password+"'"//login
+    var sqlInsert = "INSERT INTO UserData (UserID, Password, Name, Money) VALUES('"+userID+"', '"+password+"', '"+name+"', '0')"
+    var sqlUpdate = "UPDATE UserData SET Money ='200' WHERE UserID= '"+userID+"'"
+    */
+})
 
 wedsocketServer.on("connection",(ws,rp)=>{
 
     {
+
+
+
         //Lobbyzone
         ws.on("message",(data)=>{
 
@@ -28,12 +44,119 @@ wedsocketServer.on("connection",(ws,rp)=>{
             console.log(data)
 
             var toJson = JSON.parse(data)
-
             console.log(toJson["eventName"])
-            
-            
+            console.log("--------")
+            if(toJson["eventName"] == "SendMessage")
+            {
+                Boardcast(ws , data)
+
+            }
+
+            if(toJson["eventName"] == "Register")//Register
+            {    
+                var sqlInsert = "INSERT INTO UserData (UserID, Password, Name) VALUES('"+toJson["nameID"]+"', '"+toJson["name"]+"', '"+toJson["password"]+"')"
+                db.all(sqlInsert,(err,rows)=>{
+                         
+                    if(err)
+                    {
+                        var callbackMsg = {
+                        eventName:"Register",
+                        data:"Fail"
+                        }
+
+                        var toJsonStr = JSON.stringify(callbackMsg)
+                        console.log("[0]" + toJsonStr)
+
+                        ws.send(toJsonStr)
+
+                    }
+                    else
+                    {
+                        var callbackMsg = {
+                        eventName:"Register",
+                        data:"Success"
+                        }
+                            
+                        var toJsonStr = JSON.stringify(callbackMsg)
+                        console.log("[1]" + toJsonStr)
+
+                        ws.send(toJsonStr)
+                    }
+                    
+                })
+            }
+
+            if(toJson["eventName"] == "Login")//Login
+            {
+                var sqlSelect = "SELECT * FROM UserData WHERE UserID = '"+toJson["nameID"]+"' AND Password ='"+toJson["password"]+"'"
+                
+                db.all(sqlSelect,(err , rows)=>{
+                    if(toJson["eventName"] == "Login")//Login
+                    {
+                        if(err)
+                        {
+                            
+                    
+                            console.log("[0]" + err)
+                        }
+                        else
+                        {
+                            if(rows.length > 0)
+                            {
+                                console.log("========[1]========")
+                                console.log(rows)
+                                console.log("========[1]========")
+                                var callbackMsg = {
+                                    eventName:"Login",
+                                    data:"Success",
+                                    nameID:"",
+                                    name:rows[0].Name,
+                                    password:"",
+                                    
+                                }
+
+                                var toJsonStr = JSON.stringify(callbackMsg)
+                                console.log("[2]" + toJsonStr)
+
+                                console.log(callbackMsg)
+
+                                ws.send(toJsonStr)
+
+                                console.log(toJsonStr)
+
+                            }
+                            else
+                            {
+                                var callbackMsg = {
+                                    eventName:"Login",
+                                    data:"Fail",
+                                    nameID:"",
+                                    name:"",
+                                    password:"",
+                                    
+
+                                }
+
+                                var toJsonStr = JSON.stringify(callbackMsg)
+                                console.log("[2]" + toJsonStr)
+
+                                ws.send(toJsonStr)
+
+                            }
+                            //console.log(rows)
+                    
+                        }
+                    }    
+                })
+                
+            }
+
             if(toJson["eventName"] == "CreateRoom")//CreateRoom
             {
+                for(var i = 0; i < roomList.length; i++)
+                {
+                    console.log(roomList[i].roomName)
+                }
                 console.log("Client request CreateRoom ["+toJson.data+"]")
                 var isFoundRoom = false
                 for(var i = 0; i < roomList.length; i++)
@@ -75,7 +198,7 @@ wedsocketServer.on("connection",(ws,rp)=>{
 
                     var toJsonStr = JSON.stringify(resultData)
                     
-                    
+
 
                     ws.send(toJsonStr)
                 }
@@ -204,9 +327,8 @@ wedsocketServer.on("connection",(ws,rp)=>{
 
     ws.on("close", ()=>{
         
+    
 
-        //wsList = ArrayRemove(wsList,ws)
-        
         console.log("client disconnected.")
             //============ Find client in room for remove client out of room ================
             var isLeaveSuccess = false;//Set false to default.
@@ -273,6 +395,7 @@ wedsocketServer.on("connection",(ws,rp)=>{
 
 
 
+
 function ArrayRemove(arr, value)
 {
     return arr.filter((element)=>{
@@ -281,10 +404,24 @@ function ArrayRemove(arr, value)
     })
 }
 
-function Boardcast(data)
+function Boardcast(ws,data)
 {
-    for(var i = 0; i < wsList.length;i++)
+    var selectRoomIndex = -1;
+
+    for(var i = 0; i < roomList.length;i++)
     {
-        wsList[i].send(data);
+        for(var j = 0; j < roomList[i].wsList.length;j++)
+        {
+            if(ws == roomList[i].wsList[j])
+            {
+                selectRoomIndex = i;
+            }
+        }
+    }
+
+    for(var i = 0; i < roomList[selectRoomIndex].wsList.length; i++)
+    {
+
+        roomList[selectRoomIndex].wsList[i].send(data)
     }
 }
