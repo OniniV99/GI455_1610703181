@@ -193,7 +193,10 @@ wedsocketServer.on("connection",(ws,rp)=>{
 
                     var resultData = {
                         eventName: toJson.eventName,
-                        data: "Success"
+                        data: "Success",
+                        nameID:"",
+                        name:toJson.data,
+                        password:"",
                     }
 
                     var toJsonStr = JSON.stringify(resultData)
@@ -231,7 +234,12 @@ wedsocketServer.on("connection",(ws,rp)=>{
                     //callback to client : room is exist
                     console.log("join room: joining room")
 
-                    var resultData = {eventName: toJson.eventName,data: "Success"}
+                    var resultData = {
+                        eventName: toJson.eventName,
+                        data: "Success",
+                        nameID:"",
+                        name:toJson.data,
+                        password:"",}
 
                     var toJsonStr = JSON.stringify(resultData)
 

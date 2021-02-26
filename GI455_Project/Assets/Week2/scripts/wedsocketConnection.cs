@@ -283,7 +283,7 @@ namespace Week2
 
                 string jsonStr = JsonUtility.ToJson(socketEvent);
 
-                nameRoom.text = roomName;
+                
 
 
                 websocket.Send(jsonStr);
@@ -425,6 +425,8 @@ namespace Week2
                         Room.SetActive(true);
                         print("in room");
 
+                        nameRoom.text = severOutputJS.name;
+
                     }
                     else if (severOutputJS.data == "Fail")
                     {
@@ -445,6 +447,8 @@ namespace Week2
                         UI1.SetActive(false);
                         Room.SetActive(true);
                         print("in room");
+
+                        nameRoom.text = severOutputJS.name;
 
                     }
                     else if (severOutputJS.data == "Fail")
